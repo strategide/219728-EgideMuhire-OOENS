@@ -1,5 +1,6 @@
 package edu.strathmore.dbit.ooens.utils.log;
 
+import java.io.PrintStream;
 import java.time.LocalDateTime;
 
 public class Log {
@@ -44,6 +45,14 @@ public class Log {
         log(LogLevel.ERROR, message, tag);
     }
 
+    public static void r(String message) {
+        log(LogLevel.RAW, message, null);
+    }
+
+    public static void re(String message) {
+        log(LogLevel.RAW_ERROR, message, null);
+    }
+
     private static String getTimestamp() {
         final LocalDateTime now = LocalDateTime.now();
         final String date = String.format(
@@ -65,6 +74,14 @@ public class Log {
     }
 
     private static void log(LogLevel level, String message, Object tag) {
+        final boolean isError = level == LogLevel.ERROR;
+        final PrintStream target = isError ? System.err : System.out;
+        
+        if (level == LogLevel.RAW || level == LogLevel.RAW_ERROR) {
+            target.println(message);
+            return;
+        }
+        
         final String timestamp = getTimestamp();
         final char label = level.toString().charAt(0);
         String output = String.format("[%s]-[%s]", timestamp, label);
@@ -74,8 +91,6 @@ public class Log {
         }
 
         output = String.format("%s: %s", output, message);
-
-        final boolean isError = level == LogLevel.ERROR;
-        (isError ? System.err : System.out).println(output);
+        target.println(output);
     }
 }

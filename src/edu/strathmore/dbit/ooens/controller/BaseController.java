@@ -5,8 +5,6 @@ import edu.strathmore.dbit.ooens.utils.TimeStamp;
 import edu.strathmore.dbit.ooens.utils.log.Log;
 import java.util.UUID;
 
-import java.sql.Connection;
-
 /**
  *
  * @author strategide
@@ -89,6 +87,14 @@ public abstract class BaseController {
 
     protected void e(String message) {
         Log.e(message, this);
+    }
+
+    protected void r(String message) {
+        Log.r(message);
+    }
+
+    protected void re(String message) {
+        Log.re(message);
     }
 
     private void crash(String message) {

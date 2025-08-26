@@ -49,7 +49,7 @@ public class Database {
 
     private void loadDriver() throws ClassNotFoundException {
         Log.v("Loading driver...", this);
-        Log.v(" → Driver: " + DRIVER);
+        Log.v(" → Driver: " + DRIVER, this);
         Class.forName(DRIVER);
     }
 

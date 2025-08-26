@@ -6,4 +6,6 @@ public enum LogLevel {
     INFO,
     WARNING,
     ERROR,
+    RAW,
+    RAW_ERROR,
 }
