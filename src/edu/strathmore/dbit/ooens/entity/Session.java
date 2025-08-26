@@ -21,6 +21,8 @@ public class Session extends BaseEntity {
     public void setStudentId(String studentId) {
         this.studentId = studentId;
     }
+    
+    
 
     public String getToken() {
         return token;
